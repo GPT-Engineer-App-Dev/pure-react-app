@@ -10,7 +10,9 @@ const Events = () => {
   const { data: events, isLoading, isError } = useEvents();
 
   useEffect(() => {
+    console.log("Session state:", session);
     if (!session) {
+      console.log("No session found, redirecting to login.");
       navigate("/login");
     }
   }, [session, navigate]);
@@ -28,6 +30,7 @@ const Events = () => {
   }
 
   if (isError) {
+    console.error("Error loading events:", isError);
     return (
       <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
         <Text fontSize="2xl">Error loading events</Text>
